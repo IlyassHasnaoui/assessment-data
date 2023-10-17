@@ -13,7 +13,6 @@ app.post('/seed', seed)
 
 // COUNTRIES
 // app.get('/countries', getCountries)
-
 // CITIES
 // app.post('/cities', createCity)
 // app.get('/cities', getCities)
