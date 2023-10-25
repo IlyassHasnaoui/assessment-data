@@ -1,14 +1,14 @@
 
 require("dotenv").config()
 
-const Sequelize = require('sequelize')
+const Sequelize = require('sequelize');
 
 
-const sequelize = new Sequelize(process.env.CONNECTION_STRING)
+const sequelize = new Sequelize(process.env.CONNECTION_STRING);
 
 //const {CONNECTION_STRING} = process.env
 
-module.exports = {
+module.exports = { 
     seed: (req, res) => {
         sequelize.query(`
             drop table if exists cities;
@@ -224,14 +224,14 @@ module.exports = {
             
     console.log('DB seeded!')
     res.sendStatus(200) })
-        .catch(err => console.log('error seeding DB', err))}},
+        .catch(err => console.log('error seeding DB', err))},
 
-    getCountries = (req, res) => {
+    getCountries: (req, res) => {
     sequelize.query(`select * from countries;`)
         .then(dbRes => res.status(200).send(dbRes[0]))
         .catch(err => console.log(err))},
 
-    createCity = (req, res) => {
+    createCity: (req, res) => {
     let {name, rating, countryId} = req.body
     sequelize.query(`
     select *        
@@ -244,7 +244,7 @@ module.exports = {
         .then(dbRes => res.status(200).send(dbRes[0]))
         .catch(err => console.log(err))},
 
-    getCities = (req, res) => {
+    getCities: (req, res) => {
     sequelize.query(`
         select 
         cities.city_id,
@@ -259,10 +259,11 @@ module.exports = {
         .then(dbRes => res.status(200).send(dbRes[0]))
         .catch(err => console.log(err))},
 
-    deleteCity = (req, res) => {
+    deleteCity: (req, res) => {
     const {id} = req.params
     sequelize.query(`
         delete from cities
         where city_id = ${id}`)
         .then(dbRes => res.status(200).send(dbRes[0]))
-        .catch(err => console.log(err))};
+        .catch(err => console.log(err))}
+    }
